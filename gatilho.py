@@ -37,16 +37,11 @@ class Set_up:
     
     def __init__(self):
         self.algum_comando_foi_executado = Comando_nao_executado()
-        self.__is_adm = False
 
     @property
     def mood (self):
         '''check quantidade de raiva'''
         return self.__anger
-        
-    def login_adm(self):
-        self.__is_adm = True
-        server.notification("logado como Administrador")
 
     def check_comando_executado(self, comando):
         return self.algum_comando_foi_executado.check_comando_executado(self, comando)
@@ -170,10 +165,6 @@ class Audio_Command:
 
 class Set:
     def check (self, voz):
-        '''if not sett.is_adm():
-            server.notification("ACESSO NEGADO\n>> Precisa ser ADM para acessar esse terminal. <<")
-            server.notification("redirecionando. . ")
-            return Just_voice().check(voz)'''
         if "humor" in voz: self.__irritada (voz)
         elif "especial" in voz or "configuração" in voz or "fofa" in voz or "cute" in voz or "fofura" in voz: self.__cute_mode(voz)
         else: return Just_voice().check(voz)

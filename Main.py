@@ -7,20 +7,9 @@ dh = Datahora()
 
 
 class Main:
-    __administrator = []
     def __init__(self):
         self.__princess = "luna"
-        self._is_adm = False
 
-    def add_administrator (self, new_admin):
-        print (self.__administrator)
-        self.__administrator.append(new_admin)
-        print (self.__administrator)
-
-    @property
-    def adm(self):
-        return self.__administrator
-    @property
     def name_bot (self):
         return self.__princess
     def exe(self):
@@ -36,9 +25,6 @@ class Iniciar:
         print ("\nIniciando . . \n")
         checkin = input ("Por Favor, informe nick: ")
         login = checkin.lower()
-        if login in main.adm: 
-            main._is_adm = True
-            setup.login_adm()
         audio.toca_audios("link_start")
         return self.__intro (checkin, bot)
 
@@ -104,5 +90,4 @@ if __name__ == "__main__":
     iniciar  = Iniciar()
     switch   = Switch()
     server   = Server()
-    main.add_administrator("huara")
     main.exe()
