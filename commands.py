@@ -135,9 +135,9 @@ class Browser:
 class Watch:
     def assistir(self, o_que_quer_assistir):
         if   o_que_quer_assistir == "anime":
-            browser.open ("https://animesonline.cc/episodio/")
+            browser.open ("https://www.crunchyroll.com/pt-br")
         elif o_que_quer_assistir == "série":
-            browser.open ("https://pobreflix.top/")
+            browser.open ("https://www.netflix.com/br/")
 
 class App:
     def __init__(self, path_atalhos):
