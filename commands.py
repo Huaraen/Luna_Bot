@@ -19,6 +19,7 @@ class Utility:
             
             
 class Datahora:
+<<<<<<< HEAD
     '''retorna hora e/ou data atual''' 
     def _data_agora(self):
         '''retorna dia/mês'''
@@ -29,6 +30,15 @@ class Datahora:
         # ("%H:%M:%S") Para segundos também.
     def _data_hora(self):
         '''retorna dia/mes/ano Horas:Minutos'''
+=======
+    '''Dia a dia'''  
+    def _data_agora(self):
+        return datetime.now().strftime("%d/%m")    
+    def _hora_agora(self):
+        return datetime.now().strftime("%H:%M")
+        # ("%H:%M:%S") Para segundos também.
+    def _data_hora(self):
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
         return datetime.now().strftime("%d/%m/%Y %H:%M")
 
     @property
@@ -57,13 +67,21 @@ class Audio:
         self.__path_voices = "Audios/bot_sound/"
 
     def toca_audios (self, nome, fonte="audios"):
+<<<<<<< HEAD
         '''reproduz audio.mp3, fonte "audios", "bot" ou informar caminho dentro da pasta Luna_bot terminando com /'''
+=======
+        '''reproduz audio.mp3, fonte "audios", "bot ou informar caminho dentro da pasta Luna_bot terminando com /'''
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
         if fonte == "audios":
             path = self.__path
         elif fonte == "bot":
             path = self.__path_voices        
         else: path = fonte
+<<<<<<< HEAD
         ps.playsound(f'{path}{nome}.mp3')
+=======
+        ps.playsound('{}{}.mp3'.format (path, nome))
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
 
     def toca_randomic_audio(self, nome_audio, stop=2, start=1):
         random = str(randrange(start,stop+1))
@@ -138,9 +156,15 @@ class Browser:
 class Watch:
     def assistir(self, o_que_quer_assistir):
         if   o_que_quer_assistir == "anime":
+<<<<<<< HEAD
             browser.open ("https://animesonline.cc/episodio/")
         elif o_que_quer_assistir == "série":
             browser.open ("https://pobreflix.top/")
+=======
+            browser.open ("https://www.crunchyroll.com/pt-br")
+        elif o_que_quer_assistir == "série":
+            browser.open ("https://www.netflix.com/br/")
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
 
 class App:
     def __init__(self, path_atalhos):
@@ -166,6 +190,7 @@ class App:
         /im (ImageName ): Specifies the image name of the process to be terminated.
         For more info regarding TaskKill --> 
         https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb491009(v=technet.10)?redirectedfrom=MSDN
+<<<<<<< HEAD
         dir : 
         cd : change directory (cd User, .. "volta", / "à raiz" )
         ipconfig
@@ -177,6 +202,10 @@ class App:
 
     
 
+=======
+        '''
+
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
 
 if __name__ == "__main__":
     Server().notification("Arquivo de propriedade extensão")
@@ -184,6 +213,7 @@ if __name__ == "__main__":
         Server().notification(("Programa se desligando em {}".format(3-time)))
         sleep(1)
     exit()
+<<<<<<< HEAD
 
     
 '''
@@ -199,3 +229,5 @@ Systeminfo
 tasklist
 Netstat : análise de conexões TCI/IP ativas na sua máquina
 '''
+=======
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
