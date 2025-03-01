@@ -50,6 +50,8 @@ class Set_up:
     def comando_nao_executado (self):
         self.algum_comando_foi_executado.comando_nao_executado(self)
 
+<<<<<<< HEAD
+=======
 class Comando_ja_executado:
     def check_comando_executado (self, Setup, comando):
         if comando == "startando comandos":
@@ -74,6 +76,7 @@ class Comando_nao_executado:
 
 
 class Angry:
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
     def angry (self):
         '''retorna True caso ela esteja brava'''
         roll20 = randrange(1,21)
@@ -89,6 +92,41 @@ class Angry:
         if sett.mood < 0: sett.__anger = 0
 
 
+<<<<<<< HEAD
+class Comando_ja_executado:
+    def check_comando_executado (self, Setup, comando):
+        if comando == "Iniciando comandos":
+            self.comando_nao_executado(Setup)
+        elif comando == "Comando foi executado":
+            return True            
+    def comando_executado (self, Setup):
+        server.notification("Comando já foi executado")
+    def comando_nao_executado (self, Setup):
+        Setup.algum_comando_foi_executado = Comando_nao_executado()
+
+
+class Comando_nao_executado:
+    def check_comando_executado (self, Setup, comando):
+        if comando == "Comando executado":
+            self.comando_executado(Setup)
+        elif comando == "Comando foi executado":
+            return False
+    def comando_executado (self, Setup):
+        Setup.algum_comando_foi_executado = Comando_ja_executado()
+    def comando_nao_executado (self, Setup):
+        server.notification("Comando ainda não foi executado")
+
+
+class Just_voice:
+    def check(self, voz):
+        if sett.angry(): 
+            if sett.mood >= 9 and "desculp" in voz:
+                x = audio.toca_randomic_audio("angry_mood_sorry_", stop=4)
+                if x == 1: sett.somar_mood (-4)
+                else: sett.somar_mood (-2)
+                return "still angry "
+            return "angry"
+=======
 class Just_voice:
     def check(self, voz):
         if angry.angry(): return "angry"
@@ -97,6 +135,7 @@ class Just_voice:
             if x == 1: angry.somar_mood (-4)
             else: angry.somar_mood (-2)
             return "still angry "
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
         else:
             yes_or_no_questions = ["você conhece", "você gosta", "você está", "você é"]
             if   "fogo" in voz or "fire" in voz:
@@ -107,27 +146,47 @@ class Just_voice:
                 server.notification("\n.   _/﹋\_\n    (҂`_´)\n    <,︻╦̵̵̿╤─ ҉     ~  •", body.bot_name)
                 audio.toca_audios("hello_monkeys")
                 return "audio "
+<<<<<<< HEAD
+            elif "é um robo" in voz or "e um robo" in voz:
+=======
             elif "é um robo" in voz:
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
                 audio.toca_randomic_audio("are_you_a_bot_", 6)
                 return "audio "
             elif "*" in voz:
                 audio.toca_randomic_audio("been_rude_with_bot_", 3)
+<<<<<<< HEAD
+                sett.somar_mood (4)
+                return "audio "
+            elif "sentido da vida" in voz:
+                audio.toca_audios("meaning_of_life", "bot")
+                sett.somar_mood (-1)
+=======
                 angry.somar_mood (4)
                 return "audio "
             elif "sentido da vida" in voz:
                 audio.toca_audios("meaning_of_life", "bot")
                 angry.somar_mood (-1)
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
                 return "audio "
             elif "sobre você" in voz:
                 audio.toca_randomic_audio("tell_me_something_about_yourself_", 4)
                 return "audio "
             elif "você é d" in voz or "você veio d" in voz or "nasceu" in voz:
                 audio.toca_randomic_audio("where_are_you_from_", 8)
+<<<<<<< HEAD
+                sett.somar_mood (-1)
+                return "audio "
+            elif "vinho" in voz:
+                audio.toca_audios("osmanthus_wine_taste_the_same_as_I_remember","bot")
+                sett.somar_mood (-1)
+=======
                 angry.somar_mood (-1)
                 return "audio "
             elif "vinho" in voz:
                 audio.toca_audios("osmanthus_wine_taste_the_same_as_I_remember","bot")
                 angry.somar_mood (-1)
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
                 return "audio "
             elif "você é solteir" in voz:
                 audio.toca_audios("are_you_single","bot")
@@ -148,6 +207,10 @@ class Just_voice:
 
 
 class Audio_Command:
+<<<<<<< HEAD
+    '''Retorna Comandos de áudio '''
+=======
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
     def accept(self, is_random = True):
         ''' 1 = roger_that, 2 = oky, 3 = jg Song, else = Yeah_no_problem'''
         if is_random: random_number = randrange(1, 5)
@@ -190,8 +253,19 @@ class Set:
         sett.__anger = new_anger
         if sett.__anger is None: sett.__anger = 0
 
+<<<<<<< HEAD
+'''
+verifica_voz = "verifica_voz.txt"
+verifica_voz_arquivo = open(verifica_voz, 'w')
+lista_voz = ("defin", "mude", "mudar", "set")
+verifica_voz_arquivo.write(lista_voz)
+    verifica_voz_arquivo = open ('verifica_voz.txt')
+'''
+class Verifica_voz(Body):    
+=======
 
 class Verifica_voz(Body):
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
     def realiza_comandos (self, voz):
         __config_options = ["defin", "mude", "mudar", "set"]
         if body.procura_em_lista_e_executa_programa(__config_options, voz): Set().check(voz)
@@ -259,7 +333,11 @@ class Hora(Base_Comandos):
 
 
 class Musica(Base_Comandos):
+<<<<<<< HEAD
+    __trig_musica = ["anime", "bad apple"] 
+=======
     __trig_musica = ["anime", "bad apple"]
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
     def tem_palavra_chave_e_comando (self, voz):
         if "toca" in voz or "tocar" in voz:
             return self.procura_em_lista_e_executa_programa(self.__trig_musica, voz)
@@ -376,7 +454,11 @@ class Algo_youtube(Base_Comandos):
 
     def formatacao_para_pesquisar(self, voz):
         __filtro_de_palavras = ["procurar", "procure", "procura", "sobre", "no youtube", "pesquisar", "pesquise",
+<<<<<<< HEAD
+                                    "pesquisa", "pra mim", "para mim", "luna"]
+=======
                                     "pesquisa", "pra mim", "para mim"]
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
         for palavras in __filtro_de_palavras:
             if palavras in voz:
                 voz = voz.replace (palavras+' ', "")
@@ -432,12 +514,20 @@ app               = App("Atalhos")
 # Gatilhos
 body              = Body()
 sett              = Set_up()
+<<<<<<< HEAD
+=======
 angry             = Angry()
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
 audio_cmd         = Audio_Command()
 unknown__commando = Unknown_command()
 
 if __name__ == "__main__": 
+<<<<<<< HEAD
+    paralelo = False
+    while paralelo:
+=======
     while True:
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
         voice = (input(">> "))
         Verifica_voz().realiza_comandos(voice)
         if voice == "sair":

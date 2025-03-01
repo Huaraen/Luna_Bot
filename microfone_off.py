@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
 from commands import Audio, Server
 from gatilho import Verifica_voz
 from random import randrange
