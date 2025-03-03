@@ -6,7 +6,7 @@ from switch        import Switch
 class Main:
     def __init__(self):
         self.__bot_name = "luna"
-        self.switch = Switch(bot_name)
+        self.switch = Switch(self.bot_name)
 
     @property
     def bot_name (self):
