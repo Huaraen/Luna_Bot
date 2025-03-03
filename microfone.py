@@ -100,11 +100,7 @@ class Mic_turn_on:
 
 if "__main__" == __name__:
     while True:
-<<<<<<< HEAD
         x = Mic_turn_on().reconhecimento_mic(power = True)
-=======
-        x = Mic_turn_on().reconhecimento_mic(True)
->>>>>>> 05513dda182a0d74069cdb35a5c8e885b22396d0
         if x == "sair": exit ()
 
         
