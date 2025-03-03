@@ -23,6 +23,7 @@ if __name__ == "__main__":
         iniciar  = Iniciar()
         switch   = Switch()
         server   = Server()
+        main = Main()
         main.exe()
     except Exception as e:
         print(f"Erro ao iniciar o programa: {e}")
