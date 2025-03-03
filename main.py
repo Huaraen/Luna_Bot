@@ -1,22 +1,43 @@
 from microfone_off import Console
 from microfone     import Mic
 from commands      import Server
+from iniciar       import Iniciar
 from gatilho       import Audio, Datahora
+from switch        import Switch
 audio = Audio()
 dh = Datahora()
 
 
 class Main:
+    '''Classe principal que inicializa o bot e executa o loop principal.'''
     def __init__(self):
-        self.__princess = "luna"
+        self.__name_bot = "luna"
+        self.switch = Switch(self.name_bot)
 
-    def name_bot (self):
-        return self.__princess
+    @property
+    def name_bot(self):
+        return self.__name_bot
+    
     def exe(self):
-        iniciar.iniciar(self.name_bot)
-        while True:
-            switch.check_power()
-main = Main()
+        try:
+            iniciar.iniciar(self.name_bot)
+            while True:
+                self.switch.check_power()
+        except Exception as e:
+            print (f'Ocorreu um erro: {e}')
+
+if __name__ == "__main__":
+    try:
+        iniciar = Iniciar()
+        main = Main()
+        main.exe()
+    except Exception as e:
+        print (f'Ocorreu um erro: {e}')
+
+
+        
+'''
+
 
 class Iniciar:
     def iniciar (self, bot):
@@ -84,10 +105,9 @@ class Power_off:
         server.notification("Oláa!!", main.name_bot.title())
     def desligar(self, Switch):
         server.notification ("Programa já se encontra desligado")
+'''
 
-
-if __name__ == "__main__":
+if __name__ == "__Main__":
     iniciar  = Iniciar()
-    switch   = Switch()
     server   = Server()
     main.exe()

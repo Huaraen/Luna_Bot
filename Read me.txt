@@ -1,12 +1,10 @@
 Voices> "s" e "n" questions
-    macaco ou troll
     é um robo?
     rude
     sentido da vida
     sobre você
     você é de onde / você veio de onde?
     vinho
-    você é solteir
     você gosta de 
 
 data de hoje, dia é hoje
@@ -33,3 +31,36 @@ Mutar bot>
 
 desligar>
     __trig_turn_off = ["desligue", "desligar", "desativar", "desative", "tchau", "até mais"]
+
+
+
+
+
+Aqui estão algumas sugestões para aperfeiçoar o seu código:
+
+1. **Organização e Modularização**:
+   - Separe as classes em arquivos diferentes para melhorar a organização e a manutenção do código.
+   - Por exemplo, crie arquivos como main.py, `iniciar.py`, `switch.py`, `power.py`, etc.
+
+2. **Tratamento de Exceções**:
+   - Adicione tratamento de exceções para lidar com possíveis erros, como entradas inválidas do usuário.
+
+3. **Documentação**:
+   - Adicione docstrings mais detalhadas para métodos e classes, explicando o propósito e o funcionamento de cada um.
+
+4. **Melhoria na Interação com o Usuário**:
+   - Adicione mais feedback ao usuário durante a interação, como confirmações de comandos recebidos.
+
+5. **Testes Unitários**:
+   - Crie testes unitários para garantir que cada parte do código funcione corretamente e facilite a detecção de bugs.
+
+6. **Uso de Logging**:
+   - Utilize a biblioteca `logging` para registrar eventos importantes e facilitar a depuração.
+
+7. **Refatoração de Código**:
+   - Simplifique e refatore partes do código para torná-lo mais legível e eficiente.
+
+Essas são apenas algumas sugestões iniciais. A modularização e a adição de testes unitários são passos importantes para melhorar a qualidade e a manutenção do seu código.
+
+
+
