@@ -1,5 +1,6 @@
 import speech_recognition as sr
-from commands import Audio, Server
+from audio import Audio
+from server import Server
 from gatilho import Verifica_voz
 from random import randrange
 verify_voice = Verifica_voz()
@@ -101,6 +102,9 @@ class Mic_turn_on:
 if "__main__" == __name__:
     while True:
         x = Mic_turn_on().reconhecimento_mic(power = True)
-        if x == "sair": exit ()
-
+        if x == "sleep": break
+        elif x == "unknown command": continue
+        elif x == "abrir console": print ("abrir console")
+        elif x == "fechar console": print ("fechar console")
+        else: print (f"Comando: {x}")
         

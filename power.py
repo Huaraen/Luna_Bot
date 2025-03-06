@@ -1,4 +1,4 @@
-from commands      import Server
+from server        import Server
 from gatilho       import Audio, Datahora
 
 audio = Audio()
@@ -49,7 +49,7 @@ class Power_off:
             Switch.estado_atual = Power_on()
             Switch.power = True
             audio.toca_randomic_audio("turn_on_", 5)
-            server.notification("Oláa!!", Switch.name_bot.title())
+            server.notification("Oláa!!", Switch.bot_name.title())
         except Exception as e:
             print(f"Erro ao ligar (desligado): {e}")    
 

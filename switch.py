@@ -1,18 +1,18 @@
 from microfone_off import Console
 from microfone import Mic
 from power import Power_on, Power_off
-from commands import Server
+from server import Server
 server = Server()
 
 class Switch:
     """Classe responsável por ligar e desligar o sistema."""
     def __init__(self, bot_name):
         self.bot_name = bot_name
-        self.console = Console(bot_name)
-        self.mic = Mic(bot_name)
+        self.console = Console(self.bot_name)
+        self.mic = Mic(self.bot_name)
         self.executavel = self.console
-        self.estado_atual = Power_on()
-        self.power = True
+        self.estado_atual = Power_off()
+        self.power = False
 
     def check_power(self):
         try:

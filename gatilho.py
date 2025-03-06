@@ -1,10 +1,16 @@
-from commands import Utility, Datahora, Audio, Server, Browser, App, Watch
-from random import randrange
-from time import sleep
+from utility    import Utility
+from datahora   import Datahora
+from audio      import Audio
+from server     import Server
+from browser    import Browser
+from app        import App
+from watch      import Watch
+from random     import randrange
+from time       import sleep
 
 class Body:
     def __init__(self, prox_comando=None):
-        self.__bot = "luna"
+        self.__bot = sett.bot_name
         self.__prox_comando = prox_comando
 
     def proximo_comando_a_ser_executado (self, voice):
@@ -35,7 +41,8 @@ class Set_up:
     __cute_mode = False
     __anger = 0
     
-    def __init__(self):
+    def __init__(self, bot_name):
+        self.bot_name = bot_name
         self.algum_comando_foi_executado = Comando_nao_executado()
 
     @property
