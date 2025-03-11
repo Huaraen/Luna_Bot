@@ -1,0 +1,11 @@
+bloco de notas
+sul
+league of legends
+navegador
+sporify
+gerenciador de tarefas
+
+
+Não está em funcionamento.
+
+Manualmente em Gatilho.py linha 325

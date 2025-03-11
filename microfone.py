@@ -1,15 +1,17 @@
 import speech_recognition as sr
-from audio import Audio
-from server import Server
-from gatilho import Verifica_voz
-from random import randrange
+from audio      import Audio
+from server     import Server
+from gatilho    import Verifica_voz
+from random     import randrange
+from config     import Config
+
 verify_voice = Verifica_voz()
 server = Server()
 audio = Audio()
 
 class Mic:
-    def __init__(self, name_bot):
-        self.__name_bot = name_bot
+    def __init__(self):
+        self.__name_bot = Config.BOT_NAME
 
     @property
     def name_bot(self):
@@ -54,8 +56,8 @@ class Power_off:
             return self.__sleeping()
         else: return self.__sleeping()
 
-    def __sleeping(self):
-        server.notification(texto="Sleeping...", cardinal="Luna") 
+    def __sleeping(self, Miic):
+        server.notification(texto="Sleeping...", cardinal=(Miic.name_bot.title())) 
         roll20 = randrange(1, 20)
         if roll20 >= 18: audio.toca_audios("go_to_sleep_2", "bot")
         return False

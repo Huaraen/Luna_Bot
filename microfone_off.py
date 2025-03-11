@@ -1,31 +1,33 @@
-from server import Server
-from audio import Audio
-from gatilho import Verifica_voz
-from random import randrange
+from server     import Server
+from audio      import Audio
+from gatilho    import Verifica_voz
+from random     import randrange
+from config     import Config   
+
 verify_voice = Verifica_voz()
 server = Server()
 audio = Audio()
 
 class Console():
-    def __init__(self, bot_name):
-        self.__bot_name = bot_name
+    def __init__(self):
+        self.__bot_name = Config.BOT_NAME
 
     @property
     def bot_name(self):
         return self.__bot_name
 
     def power (self, is_power):
-        if is_power: return Power_on(self.bot_name).mic_on(self)
-        else: return Power_off(self.bot_name).mic_on(self)
+        if is_power: return Power_on().mic_on()
+        else: return Power_off().mic_on()
 
 class Power_on():
     '''se sistema se encontra ligado, identifica a voz
     e executa função.'''
-    def __init__(self, bot_name):
-        self.bot_name = bot_name
+    def __init__(self):
+        self.bot_name = Config.BOT_NAME
         self.__trig_turn_off = ["turn off", "vai pra casa", "dormir", "boa noite"]
     
-    def mic_on(self, Miic):
+    def mic_on(self):
         voice = input("... ")
         if self.bot_name == voice: 
             return verify_voice.voz_bot ()
@@ -42,11 +44,11 @@ class Power_on():
 class Power_off():
     '''se sistema se encontra desligado, identifica a voz
     e se tiver o comando de ligar, liga o sistema.'''
-    def __init__(self,bot_name):
-        self.bot_name = bot_name
+    def __init__(self):
+        self.bot_name = Config.BOT_NAME
         self.__trig_turn_on = ["turn on", " ligar", "acord", "bom dia", "boa tarde", "boa noite", "despert"]
 
-    def mic_on(self, Miic):
+    def mic_on(self):
         voice = input("... ")
         if self.bot_name in voice:
             if "console" in voice: return "fechar console"

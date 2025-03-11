@@ -1,16 +1,18 @@
-from utility    import Utility
-from datahora   import Datahora
-from audio      import Audio
-from server     import Server
-from browser    import Browser
-from app        import App
-from watch      import Watch
-from random     import randrange
-from time       import sleep
+from utility            import Utility
+from datahora           import Datahora
+from audio              import Audio
+from server             import Server
+from browser            import Browser
+from app                import App
+from watch              import Watch
+from random             import randrange
+from time               import sleep
+from config             import Config
+from gatilhos_carregar  import carregar_gatilhos
 
 class Body:
     def __init__(self, prox_comando=None):
-        self.__bot = sett.bot_name
+        self.__bot_name = Config.BOT_NAME
         self.__prox_comando = prox_comando
 
     def proximo_comando_a_ser_executado (self, voice):
@@ -23,11 +25,11 @@ class Body:
     @property
     def bot (self):
         '''retorna string do bot'''
-        return self.__bot
+        return self.__bot_name
     @property
     def bot_name(self):
         '''retorna string do bot formatado'''
-        return self.__bot.title()
+        return self.__bot_name.title()
 
     def procura_em_lista_e_executa_programa (self, self_lista, voz_ouvida):
         for frase in self_lista:
@@ -41,8 +43,8 @@ class Set_up:
     __cute_mode = False
     __anger = 0
     
-    def __init__(self, bot_name):
-        self.bot_name = bot_name
+    def __init__(self):
+        self.bot = Config.BOT_NAME
         self.algum_comando_foi_executado = Comando_nao_executado()
 
     @property
@@ -206,9 +208,9 @@ lista_voz = ("defin", "mude", "mudar", "set")
 verifica_voz_arquivo.write(lista_voz)
     verifica_voz_arquivo = open ('verifica_voz.txt')
 '''
-class Verifica_voz(Body):    
+class Verifica_voz(Body): 
     def realiza_comandos (self, voz):
-        __config_options = ["defin", "mude", "mudar", "set"]
+        __config_options = carregar_gatilhos("gatilhos/verifica_voz.txt")
         if body.procura_em_lista_e_executa_programa(__config_options, voz): Set().check(voz)
         sett.check_comando_executado("startando comandos")
         lista_de_comandos = Dia(Hora(Musica(Navegador(Assistir(Programas_abrir(Programas_fechar
@@ -217,7 +219,7 @@ class Verifica_voz(Body):
     
     def command_voice(self, voz):
         '''retorna set config, unknown command ou lista de comandos'''
-        config_options = ["defin", "mude", "mudar"]
+        config_options = carregar_gatilhos("gatilhos/verifica_voz.txt")  
         for gatilho in config_options:
             if gatilho in voz: return sett.check(voz)
         if "unknown command" in voz: return unknown__commando.check()
@@ -248,7 +250,7 @@ class Base_Comandos(Body):
 
 
 class Dia(Base_Comandos):
-    __trig_dia = ["data de hoje", "dia é hoje"]
+    __trig_dia = carregar_gatilhos('gatilhos/dia.txt')
     def tem_palavra_chave_e_comando (self, voz):
         if "dia" in voz or "data" in voz:
             return self.procura_em_lista_e_executa_programa(self.__trig_dia, voz)
@@ -261,7 +263,7 @@ class Dia(Base_Comandos):
         
 
 class Hora(Base_Comandos):
-    __trig_hour = ["que horas são", "diga as hora"]
+    __trig_hour = carregar_gatilhos('gatilhos/hora.txt')
     def tem_palavra_chave_e_comando (self, voz):
         if "hora" in voz:
             return self.procura_em_lista_e_executa_programa(self.__trig_hour, voz)
@@ -274,7 +276,7 @@ class Hora(Base_Comandos):
 
 
 class Musica(Base_Comandos):
-    __trig_musica = ["anime", "bad apple"] 
+    __trig_musica = carregar_gatilhos('gatilhos/musica.txt') 
     def tem_palavra_chave_e_comando (self, voz):
         if "toca" in voz or "tocar" in voz:
             return self.procura_em_lista_e_executa_programa(self.__trig_musica, voz)
@@ -290,8 +292,7 @@ class Musica(Base_Comandos):
         
 
 class Navegador(Base_Comandos):
-    __trig_browser = ["google", "navegador", "discord", "youtube", "allura", "alura",
-                    "curso", "whatsapp"]
+    __trig_browser = carregar_gatilhos('gatilhos/navegador.txt')
     def tem_palavra_chave_e_comando (self, voz):
         if "abrir" in voz or "abre" in voz:
             return self.procura_em_lista_e_executa_programa(self.__trig_browser, voz)
@@ -305,7 +306,7 @@ class Navegador(Base_Comandos):
         return self.proximo_comando_a_ser_executado (voz)
 
 class Assistir(Base_Comandos):
-    __trig_assistir = ["anime", "filme", "série"]
+    __trig_assistir = carregar_gatilhos('gatilhos/assistir.txt')    
     def tem_palavra_chave_e_comando(self, voz):
         if "assisti" in voz:
             return self.procura_em_lista_e_executa_programa(self.__trig_assistir, voz)
@@ -322,11 +323,12 @@ class Assistir(Base_Comandos):
 
 
 class Programas_abrir(Base_Comandos):
-    __trig_programas = ["bloco de notas", "sul", "league of legends", "navegador", "spotify", "gerenciador de tarefas"]
+    __trig_programas = carregar_gatilhos('gatilhos/programas_abrir.txt')
     def tem_palavra_chave_e_comando (self, voz):
         if "abrir" in voz or "abre" in voz:
             return self.procura_em_lista_e_executa_programa(self.__trig_programas, voz)
         else: return False
+
     def executa_comando (self, voz):
         if "league" in voz or "legends" in voz:
             server.notification("Abrindo lolzinho", body.bot_name)
@@ -349,7 +351,7 @@ class Programas_abrir(Base_Comandos):
 
 
 class Programas_fechar(Programas_abrir):
-    __trig_programas = ["bloco de notas", "sul", "league of legends", "navegador", "spotify"]
+    __trig_programas = carregar_gatilhos('gatilhos/programas_fechar.txt')
     def tem_palavra_chave_e_comando (self, voz):
         if "fecha" in voz:
             return self.procura_em_lista_e_executa_programa(self.__trig_programas, voz)
@@ -400,7 +402,7 @@ class Algo_youtube(Base_Comandos):
 
 
 class Mute(Base_Comandos):    
-    __trig_mute = ["mutar", "mute", "silenci", "quiet"]
+    __trig_mute = carregar_gatilhos('gatilhos/mute.txt')
     def tem_palavra_chave_e_comando (self, voz):
         return self.procura_em_lista_e_executa_programa(self.__trig_mute, voz)
     def executa_comando (self, voz):
@@ -411,7 +413,7 @@ class Mute(Base_Comandos):
 
 
 class Desligar(Base_Comandos):
-    __trig_turn_off = ["desligue", "desligar", "desativar", "desative", "tchau", "até mais"]
+    __trig_turn_off = carregar_gatilhos('gatilhos/desligar.txt')
     def tem_palavra_chave_e_comando (self, voz):
         return self.procura_em_lista_e_executa_programa(self.__trig_turn_off, voz)
     def executa_comando (self, voz):
